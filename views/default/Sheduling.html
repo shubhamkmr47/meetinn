@@ -1,0 +1,183 @@
+{{extend 'layout.html'}}
+
+
+<script>
+        function pmeet(){
+document.getElementById('todaytable').style.display='None';
+     	document.getElementById('prevtable').style.display='';
+            document.getElementById('uptable').style.display='None';
+        }
+        function todaymeet(){
+		document.getElementById('todaytable').style.display='';
+            document.getElementById('prevtable').style.display='None';
+            document.getElementById('uptable').style.display='None';
+            document.getElementById('next').style.display='None';
+        }
+        
+        function upmeet(){
+document.getElementById('todaytable').style.display='None';
+            document.getElementById('prevtable').style.display='None';
+            document.getElementById('uptable').style.display='';
+            {{if len(meetsupcoming) > 10:}}
+            document.getElementById('next').style.display='';
+            {{else:}}
+              {{pass}}
+            
+        }
+        
+window.onload=todaymeet;
+
+            
+
+</script>
+<style>
+div.ex
+{
+    font-size:1em;
+color:#FFFFE0;
+width:78.3%;
+padding:10px;
+margin:0px;
+    height:28px;
+background-color: #7B7B5B;
+
+}
+#todaytable { width:80%;background-color:#FFFFE0;border-collapse:collapse;color:#000;font-size:18px;font-family:fantasy;margin-top:2px; }
+#todaytable th { background-color:#BDB76B;color:white;width:50%;font-variant:small-caps;text-align:centre;}
+#todaytable td, #todaytable th { padding:20px;border:0; }
+#todaytable td { font-family:Georgia, Garamond, serif; border-bottom:1px solid #BDB76B;height:23px; }
+    
+#prevtable { width:80%;background-color:#FFFFE0;border-collapse:collapse;color:#000;font-size:18px;font-family:fantasy;margin-top:2px; }
+#prevtable th { background-color:#BDB76B;color:white;width:50%;font-variant:small-caps;text-align:centre;}
+#prevtable td, #prevtable th { padding:20px;border:0; }
+#prevtable td { font-family:Georgia, Garamond, serif; border-bottom:1px solid #BDB76B;height:23px; }
+    
+#uptable { width:80%;background-color:#FFFFE0;border-collapse:collapse;color:#000;font-size:18px;font-family:fantasy;margin-top:2px; }
+#uptable th { background-color:#BDB76B;color:white;width:50%;font-variant:small-caps;text-align:centre;}
+#uptable td, #uptable th { padding:20px;border:0; }
+#uptable td { font-family:Georgia, Garamond, serif; border-bottom:1px solid #BDB76B;height:23px; }
+    
+h2{font-size: 30.5px;
+margin-top: -30px;
+color: white;
+font-family: fantasy;
+    margin-left:34px
+}
+    h2:hover{
+        font-size:33px;
+    }
+</style>
+<body background="{{=URL(r=request,c='static/images',f='background6.jpg')}} ">
+    
+</body>
+    <div class="ex">
+        <table>
+            <tr><td> <h2 onclick="pmeet()">
+           Previous Meeting
+           </h2>
+
+            </td>
+                <td >
+ <h2 onclick="todaymeet()">
+            Todays Meeting
+            </h2></a>
+                </td>
+                <td>
+                    <h2 onclick="upmeet()">
+                   Upcoming Meeting
+                    </h2></a>
+                </td>
+
+
+            </tr>
+        </table>
+
+
+
+    </div>
+
+
+    
+
+<table id="prevtable">
+
+<tr>
+<th>Agenda</th>
+
+
+<th>Room</th>
+<th>Start Date</th>
+<th>Start Time</th>
+<th>Close Time</h4></th>
+<th>Attachment</th>
+</tr>
+{{for meet in meetsprev:}}
+<tr>
+<td>{{=meet.agenda}}</td>
+<td>{{=meet.room}}</td>
+<td>{{=meet.date_in}}</td>
+<td>{{=meet.time_in}}</td>
+<td>{{=meet.time_out}}</td>
+    {{if meet.file:}}
+    <td><a href="{{=URL(r=request,f='download',args=meet.file)}}"><img src="{{=URL(r=request,c='static/images',f='index.jpg')}} " style="height:50px;"></a></td>
+{{else:}}
+	<td><img src="{{=URL(r=request,c='static/images',f='file-broken.png')}} " style="height:50px;"></a></td>
+    {{pass}}
+</tr>
+{{pass}}
+</table>
+<table id="todaytable">
+
+<tr>
+<th>Agenda</th>
+
+
+<th>Room</th>
+<th>Start Date</th>
+<th>Start Time</th>
+<th>Close Time</h4></th>
+<th>Attachment</th>
+</tr>
+{{for meet in meetstoday:}}
+<tr>
+<td>{{=meet.agenda}}</td>
+<td>{{=meet.room}}</td>
+<td>{{=meet.date_in}}</td>
+<td>{{=meet.time_in}}</td>
+<td>{{=meet.time_out}}</td>
+    {{if meet.file:}}
+    <td><a href="{{=URL(r=request,f='download',args=meet.file)}}"><img src="{{=URL(r=request,c='static/images',f='index.jpg')}} " style="height:50px;"></a></td>
+{{else:}}
+	<td><img src="{{=URL(r=request,c='static/images',f='file-broken.png')}} " style="height:50px;"></a></td>
+    {{pass}}
+</tr>
+{{pass}}
+</table>
+<table id="uptable">
+<tr>
+<th>Agenda</th>
+
+
+<th>Room</th>
+<th>Start Date</th>
+<th>Start Time</th>
+<th>Close Time</h4></th>
+<th>Attachment</th>
+</tr>
+{{for meet in meetsupcoming:}}
+<tr>
+<td>{{=meet.agenda}}</td>
+<td>{{=meet.room}}</td>
+<td>{{=meet.date_in}}</td>
+<td>{{=meet.time_in}}</td>
+<td>{{=meet.time_out}}</td>
+    {{if meet.file:}}
+    <td><a href="{{=URL(r=request,f='download',args=meet.file)}}"><img src="{{=URL(r=request,c='static/images',f='index.jpg')}} " style="height:50px;"></a></td>
+{{else:}}
+        <td><img src="{{=URL(r=request,c='static/images',f='file-broken.png')}} " style="height:50px;"></a></td>
+    {{pass}}
+
+</tr>
+{{pass}}
+</table>
+<img id="next" src="{{=URL(r=request,c='static/images',f='file-broken.png')}} " style="height:50px;">

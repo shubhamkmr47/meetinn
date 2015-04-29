@@ -1,0 +1,28 @@
+{{response.files.append(URL(r=request,c='static/css',f='theme.css'))}}
+{{extend 'layout.html'}}
+<body background="{{=URL(r=request,c='static/images',f='background6.jpg')}} ">
+
+<div id="image_container" style="margin-left: 240px; margin-top: 60px;width: 800px;  height: 400px;">
+<div id="image1" style="width: 270px; height: 400px; float:left">
+
+   
+    
+    <img src="{{=URL(r=request,c='static',f='calendar.jpg')}}" height=270px style="align-self: center; width: 90%; float: left; margin-top:50px;">
+
+<a href ="Meeting_sheduling"><h2 style= "font-family: fantasy; color: #A9A9A9">Shedule your meeting</h2></a>
+</div>
+
+	
+<div id="image2">
+    
+    
+    <img src="{{=URL(r=request,c='static',f='time.jpg')}}" height=250px style="margin-top:50px;">
+<a href ="http://www.fb.com"><h2 style= "font-family: fantasy; color: #A9A9A9">Timing</h2></a>
+
+</div>
+<div id="image3">
+    <img src="{{=URL(r=request,c='static',f='scribe.jpg')}}" width= 230px height=250px style="margin-top:50px;">
+<a href ="http://www.fb.com"><h2 style= "font-family: fantasy; color: #A9A9A9">Scribe</h2></a>
+</div>
+
+</div>

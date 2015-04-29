@@ -1,0 +1,20 @@
+#image2{
+margin-left: 266px;
+width: 263px;
+text-align:center;
+
+height: 400px;
+border-width: medium 3px;
+border-style: none solid;
+border-color: gray;
+border-image: none;
+}
+#image3
+{
+margin-left: 566px;
+width:222px;
+text-align:center;
+
+height: 400px;
+margin-top:-399px;
+}

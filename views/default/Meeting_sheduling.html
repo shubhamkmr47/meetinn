@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+<body background="{{=URL(r=request,c='static/images',f='background6.jpg')}} ">
+{{if session.wrong is 1:}}
+{{session.wrong=0}}
+{{session.flash="INVALID DATE OR TIME"}}
+{{redirect(URL('Meeting_sheduling'))}}
+{{else:}}
+{{pass}}
+{{if session.wrong is 2:}}
+{{session.wrong=0}}
+{{session.flash="Room Is unavailable"}}
+{{redirect(URL('Meeting_sheduling'))}}
+{{else:}}
+{{pass}}
+<h1>This is the form_submit.html template</h1>
+
+{{=form}}

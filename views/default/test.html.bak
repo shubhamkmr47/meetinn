@@ -1,0 +1,6 @@
+{{include 'layout.html'}}
+{{for q in a:}}
+<h1>
+{{=q}}
+abcd
+</h1>

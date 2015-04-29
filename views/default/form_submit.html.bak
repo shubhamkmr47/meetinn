@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+
+{{if session.wrong is 1:}}
+{{session.wrong=0}}
+{{session.flash="INVALID DATE OR TIME"}}
+{{redirect(URL('form_submit'))}}
+{{else:}}
+{{pass}}
+<h1>This is the form_submit.html template</h1>
+
+{{=form}}
